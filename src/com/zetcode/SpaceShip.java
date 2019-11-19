@@ -41,6 +41,7 @@ public class SpaceShip extends Sprite{
         else if(key == KeyEvent.VK_RIGHT) dx = 2;
         else if(key == KeyEvent.VK_UP) dy = -2;
         else if(key == KeyEvent.VK_DOWN) dy = 2;
+        else if(key == KeyEvent.VK_SPACE) fire();
     }
 
     public void keyReleased(KeyEvent e) {
@@ -53,6 +54,6 @@ public class SpaceShip extends Sprite{
     }
     
     public void fire() {
-    	missiles.add(new Missile(x + w, y + h / 2));
+    	missiles.add(new Missile(x + w + 120, y + h / 2));
     }
 }
