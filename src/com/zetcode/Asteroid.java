@@ -1,7 +1,7 @@
 package com.zetcode;
 
 public class Asteroid extends Sprite {
-	private final int dx = -2;
+	private final int dx = -1;
 	
 	public Asteroid(int x,int y) {
 		super(x,y);
@@ -17,6 +17,6 @@ public class Asteroid extends Sprite {
 	public void move() {
 		x += dx;
 		
-		if(x <= 0) visible = false;
+		if(x < -50) x = 650;
 	}
 }
