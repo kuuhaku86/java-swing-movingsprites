@@ -14,11 +14,12 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener{
-	private Timer timer;
+	private Timer timer,timer2;
 	private SpaceShip spaceShip;
 	private final int DELAY = 10;
 	private final int ICRAFT_X = 40;
 	private final int ICRAFT_Y = 60;
+	private List<Asteroid> asteroids;
 	
 	public Board() {
 		initBoard();
@@ -32,7 +33,16 @@ public class Board extends JPanel implements ActionListener{
 		spaceShip = new SpaceShip(ICRAFT_X,ICRAFT_Y);
 		
 		timer = new Timer(DELAY, this);
+		timer2 = new Timer(1000,new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				asteroids.add(new Asteroid(600, (int) Math.random() * 500 + 1));
+				repaint();
+			}
+		}) ;
+		
 		timer.start();
+		timer2.start();
 	}
 	
 	@Override
@@ -41,7 +51,7 @@ public class Board extends JPanel implements ActionListener{
 		
 		doDrawing(g);
 		
-		Toolkit.getDefaultToolkit().sync();;
+		Toolkit.getDefaultToolkit().sync();
 	}
 	
 	private void doDrawing(Graphics g) {
@@ -77,6 +87,15 @@ public class Board extends JPanel implements ActionListener{
 	
 	public void updateSpaceShip() {
 		spaceShip.move();
+	}
+	
+	public void updateAsteroid() {
+		for (int i = 0; i < asteroids.size(); i++) {
+			Asteroid asteroid = asteroids.get(i);
+			
+			if(asteroid.isVisible()) asteroid.move();
+			else asteroids.remove(i);
+		}
 	}
 	
 	private class TAdapter extends KeyAdapter {
