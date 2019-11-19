@@ -4,9 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class CollisionEx extends JFrame{
+public class Main extends JFrame{
 	
-	public CollisionEx() {
+	public Main() {
 		initUI();
 	}
 	
@@ -24,7 +24,7 @@ public class CollisionEx extends JFrame{
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
-			CollisionEx ex = new CollisionEx();
+			Main ex = new Main();
 			ex.setVisible(true);
 		});
 
